@@ -1,0 +1,58 @@
+post:
+  operationId: commitGit
+  tags:
+    - Git
+  summary: Commit changes
+  description: Commit staged changes in the Git repository
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - message
+          properties:
+            message:
+              type: string
+              description: Commit message
+            name:
+              type: string
+              description: Author name (optional, will use Git config if not provided)
+            email:
+              type: string
+              description: Author email (optional, will use Git config if not provided)
+            all:
+              type: boolean
+              description: Whether to stage all changed files before committing
+              default: false
+  responses:
+    '200':
+      description: Changes committed successfully
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      commit_id:
+                        type: string
+                        description: ID of the created commit
+    '404':
+      description: Git repository not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml'
+    '400':
+      description: Git operation failed or nothing to commit
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml' 

@@ -1,0 +1,28 @@
+post:
+  operationId: saveSpiderFile
+  tags:
+    - Spiders
+  summary: Save content to a spider file
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - path
+            - content
+          properties:
+            path:
+              type: string
+            content:
+              type: string
+  responses:
+    '200':
+      description: File saved successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

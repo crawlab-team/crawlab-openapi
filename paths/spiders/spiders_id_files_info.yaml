@@ -1,0 +1,21 @@
+get:
+  operationId: getSpiderFileInfo
+  tags:
+    - Spiders
+  summary: Get spider file info
+  description: Get metadata information about a spider file
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+    - name: path
+      in: query
+      required: true
+      description: File path
+      schema:
+        type: string
+  responses:
+    '200':
+      description: File information
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml'

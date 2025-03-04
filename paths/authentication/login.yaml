@@ -1,0 +1,46 @@
+operationId: login
+tags:
+  - Authentication
+summary: Login to get authentication token
+security: []
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - username
+          - password
+        properties:
+          username:
+            type: string
+            default: admin
+          password:
+            type: string
+            default: admin
+responses:
+  '200':
+    description: Successful login
+    content:
+      application/json:
+        schema:
+          allOf:
+            - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+            - type: object
+              properties:
+                data:
+                  type: string
+                  description: Authentication token
+  '400':
+    description: Bad request
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/entities/Error.yaml'
+  '401':
+    description: Unauthorized
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/entities/Error.yaml'

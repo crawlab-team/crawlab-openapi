@@ -1,0 +1,49 @@
+get:
+  operationId: getGitDiff
+  tags:
+    - Git
+  summary: Get diff of files
+  description: Get the diff of changed files in the Git repository
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+    - name: file_path
+      in: query
+      description: Specific file path to get diff for (optional)
+      required: false
+      schema:
+        type: string
+    - name: staged
+      in: query
+      description: Whether to get diff for staged changes
+      required: false
+      schema:
+        type: boolean
+        default: false
+  responses:
+    '200':
+      description: File diff information
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      diff:
+                        type: string
+                        description: Unified diff format of changes
+    '404':
+      description: Git repository or file not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml'
+    '400':
+      description: Git operation failed
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml' 

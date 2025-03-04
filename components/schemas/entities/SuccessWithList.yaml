@@ -1,0 +1,17 @@
+type: object
+properties:
+  code:
+    type: integer
+    format: int32
+  message:
+    type: string
+  data:
+    type: object
+    properties:
+      list:
+        type: array
+        items:
+          type: object
+      total:
+        type: integer
+        format: int64

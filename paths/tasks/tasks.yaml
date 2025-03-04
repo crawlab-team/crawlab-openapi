@@ -1,0 +1,51 @@
+get:
+  operationId: getTaskList
+  tags:
+    - Tasks
+  summary: Get list of tasks
+  parameters:
+    - $ref: '../../components/parameters/PageParam.yaml'
+    - $ref: '../../components/parameters/SizeParam.yaml'
+    - $ref: '../../components/parameters/AllParam.yaml'
+  responses:
+    '200':
+      description: List of tasks
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithList.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      list:
+                        type: array
+                        items:
+                          $ref: '../../components/schemas/models/Task.yaml'
+delete:
+  operationId: deleteTasks
+  tags:
+    - Tasks
+  summary: Delete multiple tasks
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - ids
+          properties:
+            ids:
+              type: array
+              items:
+                type: string
+  responses:
+    '200':
+      description: Tasks deleted successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

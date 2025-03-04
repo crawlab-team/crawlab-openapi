@@ -1,0 +1,94 @@
+get:
+  operationId: getSpiderList
+  tags:
+    - Spiders
+  summary: Get list of spiders
+  parameters:
+    - $ref: '../../components/parameters/PageParam.yaml'
+    - $ref: '../../components/parameters/SizeParam.yaml'
+    - $ref: '../../components/parameters/AllParam.yaml'
+    - $ref: '../../components/parameters/StatsParam.yaml'
+  responses:
+    '200':
+      description: List of spiders
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithList.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      list:
+                        type: array
+                        items:
+                          $ref: '../../components/schemas/models/Spider.yaml'
+post:
+  operationId: createSpider
+  tags:
+    - Spiders
+  summary: Create a new spider
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - name
+            - project_id
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            project_id:
+              $ref: '../../components/schemas/types/ObjectId.yaml'
+            cmd:
+              type: string
+            priority:
+              type: integer
+              format: int32
+            col_id:
+              $ref: '../../components/schemas/types/ObjectId.yaml'
+            git_id:
+              $ref: '../../components/schemas/types/ObjectId.yaml'
+  responses:
+    '200':
+      description: Spider created successfully
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    $ref: '../../components/schemas/models/Spider.yaml'
+delete:
+  operationId: deleteSpiders
+  tags:
+    - Spiders
+  summary: Delete multiple spiders
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - ids
+          properties:
+            ids:
+              type: array
+              items:
+                type: string
+  responses:
+    '200':
+      description: Spiders deleted successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

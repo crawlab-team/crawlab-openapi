@@ -1,0 +1,29 @@
+post:
+  operationId: runTask
+  tags:
+    - Tasks
+  summary: Run a task directly
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - spider_id
+          properties:
+            spider_id:
+              $ref: '../../components/schemas/types/ObjectId.yaml'
+            priority:
+              type: integer
+              format: int32
+            param:
+              type: object
+              additionalProperties: true
+  responses:
+    '200':
+      description: Task started successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

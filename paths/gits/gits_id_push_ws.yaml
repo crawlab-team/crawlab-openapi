@@ -1,0 +1,23 @@
+get:
+  operationId: pushGitWebSocket
+  tags:
+    - Git
+  summary: Push changes via WebSocket
+  description: Establish a WebSocket connection to receive real-time updates during a push operation
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '101':
+      description: Switching protocols to WebSocket
+    '404':
+      description: Git repository not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml'
+    '400':
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml' 

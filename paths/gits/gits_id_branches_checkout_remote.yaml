@@ -1,0 +1,46 @@
+post:
+  operationId: checkoutRemoteBranch
+  tags:
+    - Git
+  summary: Checkout a remote branch
+  description: Switch to a remote branch in the Git repository
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - branch
+          properties:
+            branch:
+              type: string
+              description: Name of the remote branch to checkout (without remote prefix)
+            remote:
+              type: string
+              description: Name of the remote (defaults to 'origin')
+              default: origin
+            as:
+              type: string
+              description: Name to use for the local branch (defaults to same as remote branch name)
+  responses:
+    '200':
+      description: Remote branch checked out successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml'
+    '404':
+      description: Git repository or remote branch not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml'
+    '400':
+      description: Git operation failed
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml' 

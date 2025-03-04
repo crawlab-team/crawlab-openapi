@@ -1,0 +1,91 @@
+get:
+  operationId: getScheduleList
+  tags:
+    - Schedules
+  summary: Get list of schedules
+  parameters:
+    - $ref: '../../components/parameters/PageParam.yaml'
+    - $ref: '../../components/parameters/SizeParam.yaml'
+    - $ref: '../../components/parameters/AllParam.yaml'
+  responses:
+    '200':
+      description: List of schedules
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithList.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      list:
+                        type: array
+                        items:
+                          $ref: '../../components/schemas/models/Schedule.yaml'
+post:
+  operationId: createSchedule
+  tags:
+    - Schedules
+  summary: Create a new schedule
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - name
+            - spider_id
+            - cron
+          properties:
+            name:
+              type: string
+            spider_id:
+              $ref: '../../components/schemas/types/ObjectId.yaml'
+            cron:
+              type: string
+            param:
+              type: object
+              additionalProperties: true
+            enabled:
+              type: boolean
+              default: true
+  responses:
+    '200':
+      description: Schedule created successfully
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    $ref: '../../components/schemas/models/Schedule.yaml'
+delete:
+  operationId: deleteSchedules
+  tags:
+    - Schedules
+  summary: Delete multiple schedules
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - ids
+          properties:
+            ids:
+              type: array
+              items:
+                type: string
+  responses:
+    '200':
+      description: Schedules deleted successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

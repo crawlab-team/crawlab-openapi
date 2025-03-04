@@ -1,0 +1,27 @@
+type: object
+properties:
+  _id:
+    $ref: '../types/ObjectId.yaml'
+  name:
+    type: string
+    description: Name of the dependency configuration
+  type:
+    type: string
+    enum: [python, node]
+    description: Type of dependencies (programming language)
+  path:
+    type: string
+    description: Path to the dependency file
+  file_name:
+    type: string
+    description: Name of the dependency file (e.g., requirements.txt, package.json)
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time
+  created_by:
+    $ref: '../types/ObjectId.yaml'
+  updated_by:
+    $ref: '../types/ObjectId.yaml' 

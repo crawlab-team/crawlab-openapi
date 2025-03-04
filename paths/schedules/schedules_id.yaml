@@ -1,0 +1,56 @@
+get:
+  operationId: getScheduleById
+  tags:
+    - Schedules
+  summary: Get schedule by ID
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Schedule details
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    $ref: '../../components/schemas/models/Schedule.yaml'
+    '404':
+      description: Schedule not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml'
+put:
+  operationId: updateSchedule
+  tags:
+    - Schedules
+  summary: Update schedule by ID
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/models/Schedule.yaml'
+  responses:
+    '200':
+      description: Schedule updated successfully
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    $ref: '../../components/schemas/models/Schedule.yaml'
+    '404':
+      description: Schedule not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml' 

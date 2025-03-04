@@ -1,0 +1,6 @@
+name: stats
+in: query
+schema:
+  type: boolean
+  default: false
+description: Include statistics in response

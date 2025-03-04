@@ -1,0 +1,39 @@
+PageParam:
+  name: page
+  in: query
+  schema:
+    type: integer
+    default: 1
+  description: Page number for pagination
+
+SizeParam:
+  name: size
+  in: query
+  schema:
+    type: integer
+    default: 10
+  description: Number of items per page
+
+AllParam:
+  name: all
+  in: query
+  schema:
+    type: boolean
+    default: false
+  description: Return all items without pagination
+
+StatsParam:
+  name: stats
+  in: query
+  schema:
+    type: boolean
+    default: false
+  description: Include statistics in response
+
+IdParam:
+  name: id
+  in: path
+  required: true
+  schema:
+    $ref: './schemas/types/ObjectId.yaml'
+  description: Object ID

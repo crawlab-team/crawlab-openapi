@@ -1,0 +1,26 @@
+post:
+  operationId: runSpider
+  tags:
+    - Spiders
+  summary: Run a spider
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            priority:
+              type: integer
+              format: int32
+            param:
+              type: object
+              additionalProperties: true
+  responses:
+    '200':
+      description: Spider started successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

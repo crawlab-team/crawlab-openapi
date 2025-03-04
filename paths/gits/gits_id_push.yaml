@@ -1,0 +1,45 @@
+post:
+  operationId: pushGit
+  tags:
+    - Git
+  summary: Push changes to remote
+  description: Push local commits to a remote repository
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: false
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            remote:
+              type: string
+              description: Name of the remote to push to
+              default: origin
+            branch:
+              type: string
+              description: Name of the branch to push
+            force:
+              type: boolean
+              description: Whether to force push
+              default: false
+  responses:
+    '200':
+      description: Changes pushed successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml'
+    '404':
+      description: Git repository not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml'
+    '400':
+      description: Git operation failed
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml' 

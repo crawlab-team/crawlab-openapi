@@ -1,0 +1,2131 @@
+openapi: 3.0.3
+info:
+  title: Crawlab API
+  description: API for Crawlab, an open-source distributed web crawler admin platform
+  version: 0.7.0
+
+servers:
+  - url: "{scheme}://{host}:{port}/api"
+    description: Default API server
+    variables:
+      scheme:
+          enum:
+          - http
+          - https
+          default: http
+      host:
+          default: localhost
+      port:
+          default: "8080"
+
+components:
+  schemas:
+    # Type schemas
+    ObjectId:
+      $ref: './components/schemas/types/ObjectId.yaml'
+
+    # Entity schemas
+    Error:
+      $ref: './components/schemas/entities/Error.yaml'
+    Success:
+      $ref: './components/schemas/entities/Success.yaml'
+    SuccessWithData:
+      $ref: './components/schemas/entities/SuccessWithData.yaml'
+    SuccessWithList:
+      $ref: './components/schemas/entities/SuccessWithList.yaml'
+    Pagination:
+      $ref: './components/schemas/entities/Pagination.yaml'
+
+    # Model schemas
+    User:
+      $ref: './components/schemas/models/User.yaml'
+    Token:
+      $ref: './components/schemas/models/Token.yaml'
+    Node:
+      $ref: './components/schemas/models/Node.yaml'
+    Project:
+      $ref: './components/schemas/models/Project.yaml'
+    Spider:
+      $ref: './components/schemas/models/Spider.yaml'
+    Task:
+      $ref: './components/schemas/models/Task.yaml'
+    TaskStat:
+      $ref: './components/schemas/models/TaskStat.yaml'
+    Schedule:
+      $ref: './components/schemas/models/Schedule.yaml'
+    DependencyConfig:
+      $ref: './components/schemas/models/DependencyConfig.yaml'
+    DependencyRepo:
+      $ref: './components/schemas/models/DependencyRepo.yaml'
+    NotificationSetting:
+      $ref: './components/schemas/models/NotificationSetting.yaml'
+    NotificationRequest:
+      $ref: './components/schemas/models/NotificationRequest.yaml'
+    NotificationChannel:
+      $ref: './components/schemas/models/NotificationChannel.yaml'
+    NotificationAlert:
+      $ref: './components/schemas/models/NotificationAlert.yaml'
+    Role:
+      $ref: './components/schemas/models/Role.yaml'
+    DataCollection:
+      $ref: './components/schemas/models/DataCollection.yaml'
+    DataField:
+      $ref: './components/schemas/models/DataField.yaml'
+    Database:
+      $ref: './components/schemas/models/Database.yaml'
+    Environment:
+      $ref: './components/schemas/models/Environment.yaml'
+    Git:
+      $ref: './components/schemas/models/Git.yaml'
+    GitRef:
+      $ref: './components/schemas/models/GitRef.yaml'
+    MetricTrend:
+      $ref: './components/schemas/models/MetricTrend.yaml'
+
+  securitySchemes:
+    BearerAuth:
+      $ref: './components/securitySchemes/BearerAuth.yaml'
+
+  parameters:
+    PageParam:
+      $ref: './components/parameters/PageParam.yaml'
+    SizeParam:
+      $ref: './components/parameters/SizeParam.yaml'
+    AllParam:
+      $ref: './components/parameters/AllParam.yaml'
+    StatsParam:
+      $ref: './components/parameters/StatsParam.yaml'
+    IdParam:
+      $ref: './components/parameters/IdParam.yaml'
+
+security:
+  - BearerAuth: []
+
+paths:
+  # Authentication paths
+  /login:
+    $ref: './paths/authentication/login.yaml'
+  /tokens:
+    $ref: './paths/authentication/tokens.yaml'
+
+  # Node paths
+  /nodes:
+    $ref: './paths/nodes/nodes.yaml'
+  /nodes/{id}:
+    $ref: './paths/nodes/nodes_id.yaml'
+  /nodes/{id}/metrics/time-range:
+    $ref: './paths/nodes/nodes_id_metrics_time-range.yaml'
+  /nodes/{id}/metrics/current:
+    $ref: './paths/nodes/nodes_id_metrics_current.yaml'
+
+  # Spider paths
+  /spiders:
+    $ref: './paths/spiders/spiders.yaml'
+  /spiders/{id}:
+    $ref: './paths/spiders/spiders_id.yaml'
+  /spiders/{id}/run:
+    $ref: './paths/spiders/spiders_id_run.yaml'
+  /spiders/{id}/files/list:
+    $ref: './paths/spiders/spiders_id_files_list.yaml'
+  /spiders/{id}/files/get:
+    $ref: './paths/spiders/spiders_id_files_get.yaml'
+  /spiders/{id}/files/save:
+    $ref: './paths/spiders/spiders_id_files_save.yaml'
+  /spiders/{id}/results:
+    $ref: './paths/spiders/spiders_id_results.yaml'
+  /spiders/{id}/files/info:
+    $ref: './paths/spiders/spiders_id_files_info.yaml'
+  /spiders/{id}/files/save/batch:
+    $ref: './paths/spiders/spiders_id_files_save_batch.yaml'
+  /spiders/{id}/files/save/dir:
+    $ref: './paths/spiders/spiders_id_files_save_dir.yaml'
+  /spiders/{id}/files/rename:
+    $ref: './paths/spiders/spiders_id_files_rename.yaml'
+  /spiders/{id}/files/copy:
+    $ref: './paths/spiders/spiders_id_files_copy.yaml'
+  /spiders/{id}/files/export:
+    $ref: './paths/spiders/spiders_id_files_export.yaml'
+  /spiders/{id}/files/delete:
+    $ref: './paths/spiders/spiders_id_files_delete.yaml'
+
+  # Project paths
+  /projects:
+    $ref: './paths/projects/projects.yaml'
+  /projects/{id}:
+    $ref: './paths/projects/projects_id.yaml'
+
+  # Task paths
+  /tasks:
+    $ref: './paths/tasks/tasks.yaml'
+  /tasks/{id}:
+    $ref: './paths/tasks/tasks_id.yaml'
+  /tasks/{id}/restart:
+    $ref: './paths/tasks/tasks_id_restart.yaml'
+  /tasks/{id}/cancel:
+    $ref: './paths/tasks/tasks_id_cancel.yaml'
+  /tasks/{id}/logs:
+    $ref: './paths/tasks/tasks_id_logs.yaml'
+  /tasks/run:
+    $ref: './paths/tasks/tasks_run.yaml'
+
+  # Schedule paths
+  /schedules:
+    $ref: './paths/schedules/schedules.yaml'
+  /schedules/{id}:
+    $ref: './paths/schedules/schedules_id.yaml'
+
+  # Git paths
+  /gits:
+    $ref: './paths/gits/gits.yaml'
+  /gits/{id}:
+    $ref: './paths/gits/gits_id.yaml'
+  /gits/{id}/clone:
+    $ref: './paths/gits/gits_id_clone.yaml'
+  /gits/{id}/branches:
+    $ref: './paths/gits/gits_id_branches.yaml'
+  /gits/{id}/branches/current:
+    $ref: './paths/gits/gits_id_branches_current.yaml'
+  /gits/{id}/branches/remote:
+    $ref: './paths/gits/gits_id_branches_remote.yaml'
+  /gits/{id}/branches/checkout:
+    $ref: './paths/gits/gits_id_branches_checkout.yaml'
+  /gits/{id}/branches/checkout/remote:
+    $ref: './paths/gits/gits_id_branches_checkout_remote.yaml'
+  /gits/{id}/changes:
+    $ref: './paths/gits/gits_id_changes.yaml'
+  /gits/{id}/pull:
+    $ref: './paths/gits/gits_id_pull.yaml'
+  /gits/{id}/pull/ws:
+    $ref: './paths/gits/gits_id_pull_ws.yaml'
+  /gits/{id}/push/ws:
+    $ref: './paths/gits/gits_id_push_ws.yaml'
+  /gits/{id}/files/diff:
+    $ref: './paths/gits/gits_id_files_diff.yaml'
+  /gits/{id}/commit:
+    $ref: './paths/gits/gits_id_commit.yaml'
+  /gits/{id}/push:
+    $ref: './paths/gits/gits_id_push.yaml'
+  /gits/{id}/logs:
+    get:
+      tags:
+        - Git
+      summary: Get Git logs
+      description: Get commit history logs from the Git repository
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: List of logs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /gits/{id}/files/list:
+    get:
+      tags:
+        - Git
+      summary: List Git files
+      description: List files in the Git repository
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+        - name: path
+          in: query
+          schema:
+            type: string
+          description: Path in the repository
+      responses:
+        '200':
+          description: List of files
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /gits/{id}/files/get:
+    get:
+      tags:
+        - Git
+      summary: Get Git file content
+      description: Get content of a file in the Git repository
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+        - name: path
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Path to the file
+      responses:
+        '200':
+          description: File content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /gits/{id}/files/save:
+    post:
+      tags:
+        - Git
+      summary: Save Git file
+      description: Save content to a file in the Git repository
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - path
+                - content
+              properties:
+                path:
+                  type: string
+                content:
+                  type: string
+      responses:
+        '200':
+          description: File saved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /gits/{id}/spiders:
+    get:
+      tags:
+        - Git
+      summary: Get spiders in Git repository
+      description: Get list of spiders in a Git repository
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: List of spiders
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+    post:
+      tags:
+        - Git
+      summary: Create spider from Git repository
+      description: Create a new spider from files in a Git repository
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - path
+              properties:
+                path:
+                  type: string
+      responses:
+        '200':
+          description: Spider created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+
+  # Dependencies paths
+  /dependencies/settings:
+    get:
+      tags:
+        - Dependencies
+      summary: Get dependency settings
+      description: Get dependency settings
+      responses:
+        '200':
+          description: Dependency settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessWithList'
+    
+    post:
+      tags:
+        - Dependencies
+      summary: Create dependency setting
+      description: Create a new dependency setting
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Dependency setting created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /dependencies/settings/{id}:
+    get:
+      tags:
+        - Dependencies
+      summary: Get dependency setting by ID
+      description: Get a specific dependency setting by ID
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Dependency setting details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+    
+    put:
+      tags:
+        - Dependencies
+      summary: Update dependency setting
+      description: Update a dependency setting
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Dependency setting updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+    
+    delete:
+      tags:
+        - Dependencies
+      summary: Delete dependency setting
+      description: Delete a dependency setting
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Dependency setting deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /dependencies/configs/{language}:
+    get:
+      tags:
+        - Dependencies
+      summary: Get dependency configs for a language
+      description: Get dependency configurations for a specific language
+      parameters:
+        - name: language
+          in: path
+          required: true
+          description: Programming language (python, node, etc.)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Dependency configurations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+    
+    put:
+      tags:
+        - Dependencies
+      summary: Update dependency configs for a language
+      description: Update dependency configurations for a specific language
+      parameters:
+        - name: language
+          in: path
+          required: true
+          description: Programming language (python, node, etc.)
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Dependency configurations updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /dependencies/configs/{language}/versions:
+    get:
+      tags:
+        - Dependencies
+      summary: Get dependency config versions for a language
+      description: Get available versions of dependency configurations for a specific language
+      parameters:
+        - name: language
+          in: path
+          required: true
+          description: Programming language (python, node, etc.)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Dependency configuration versions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /dependencies/configs/{language}/setups:
+    get:
+      tags:
+        - Dependencies
+      summary: Get dependency setup list for a language
+      description: Get list of dependency setups for a specific language
+      parameters:
+        - name: language
+          in: path
+          required: true
+          description: Programming language (python, node, etc.)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Dependency setup list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /dependencies/configs/{language}/setups/install:
+    post:
+      tags:
+        - Dependencies
+      summary: Install dependency setup for a language
+      description: Install a dependency setup for a specific language
+      parameters:
+        - name: language
+          in: path
+          required: true
+          description: Programming language (python, node, etc.)
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Dependency setup installed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /dependencies/configs/{language}/setups/uninstall:
+    post:
+      tags:
+        - Dependencies
+      summary: Uninstall dependency setup for a language
+      description: Uninstall a dependency setup for a specific language
+      parameters:
+        - name: language
+          in: path
+          required: true
+          description: Programming language (python, node, etc.)
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Dependency setup uninstalled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /dependencies/repos:
+    get:
+      tags:
+        - Dependencies
+      summary: Get dependency repository list
+      description: Get a list of dependency repositories
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/SizeParam'
+      responses:
+        '200':
+          description: List of dependency repositories
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessWithList'
+  /dependencies/repos/search:
+    get:
+      tags:
+        - Dependencies
+      summary: Search dependency repositories
+      description: Search for dependency repositories
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/SizeParam'
+        - name: q
+          in: query
+          required: false
+          description: Search query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Search results for dependency repositories
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessWithList'
+  /dependencies/repos/versions:
+    get:
+      tags:
+        - Dependencies
+      summary: Get dependency repository versions
+      description: Get versions for a dependency repository
+      parameters:
+        - name: name
+          in: query
+          required: true
+          description: Repository name
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Dependency repository versions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /dependencies/repos/update:
+    post:
+      tags:
+        - Dependencies
+      summary: Update dependency repositories
+      description: Update the list of dependency repositories
+      responses:
+        '200':
+          description: Dependency repositories updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /dependencies/repos/install:
+    post:
+      tags:
+        - Dependencies
+      summary: Install dependency
+      description: Install a dependency from a repository
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Dependency name
+                version:
+                  type: string
+                  description: Dependency version
+      responses:
+        '200':
+          description: Dependency installed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /dependencies/repos/uninstall:
+    post:
+      tags:
+        - Dependencies
+      summary: Uninstall dependency
+      description: Uninstall a dependency
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Dependency name
+      responses:
+        '200':
+          description: Dependency uninstalled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /dependencies/{id}/logs:
+    get:
+      tags:
+        - Dependencies
+      summary: Get dependency logs
+      description: Get logs for a dependency operation
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Dependency logs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /dependencies/spiders/{id}:
+    get:
+      tags:
+        - Dependencies
+      summary: Get spider dependencies
+      description: Get dependencies for a specific spider
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Spider dependencies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /dependencies/spiders/{id}/install:
+    post:
+      tags:
+        - Dependencies
+      summary: Install spider dependency
+      description: Install a dependency for a specific spider
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Dependency name
+                version:
+                  type: string
+                  description: Dependency version
+      responses:
+        '200':
+          description: Spider dependency installed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+
+  # Notification paths
+  /notifications/settings/{id}/test:
+    post:
+      tags:
+        - Notifications
+      summary: Test notification setting
+      description: Test a notification setting by sending a test notification
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Test notification sent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /notifications/channels/{id}/test:
+    post:
+      tags:
+        - Notifications
+      summary: Test notification channel
+      description: Test a notification channel by sending a test notification
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: Test message to send
+      responses:
+        '200':
+          description: Test notification sent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /notifications/alerts:
+    get:
+      tags:
+        - Notifications
+      summary: Get notification alerts
+      description: Get a list of notification alerts
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/SizeParam'
+      responses:
+        '200':
+          description: List of notification alerts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessWithList'
+    
+    post:
+      tags:
+        - Notifications
+      summary: Create notification alert
+      description: Create a new notification alert
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Notification alert created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /notifications/alerts/{id}:
+    get:
+      tags:
+        - Notifications
+      summary: Get notification alert by ID
+      description: Get a specific notification alert by ID
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Notification alert details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+    
+    put:
+      tags:
+        - Notifications
+      summary: Update notification alert
+      description: Update a notification alert
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Notification alert updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+    
+    delete:
+      tags:
+        - Notifications
+      summary: Delete notification alert
+      description: Delete a notification alert
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Notification alert deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /notifications/settings:
+    get:
+      tags:
+        - Notifications
+      summary: Get notification settings
+      description: Get a list of notification settings
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/SizeParam'
+      responses:
+        '200':
+          description: List of notification settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessWithList'
+    
+    post:
+      tags:
+        - Notifications
+      summary: Create notification setting
+      description: Create a new notification setting
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Notification setting created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /notifications/settings/{id}:
+    get:
+      tags:
+        - Notifications
+      summary: Get notification setting by ID
+      description: Get a specific notification setting by ID
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Notification setting details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+    
+    put:
+      tags:
+        - Notifications
+      summary: Update notification setting
+      description: Update a notification setting
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Notification setting updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+                
+    delete:
+      tags:
+        - Notifications
+      summary: Delete notification setting
+      description: Delete a notification setting
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Notification setting deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /notifications/settings/{id}/enable:
+    post:
+      tags:
+        - Notifications
+      summary: Enable notification setting
+      description: Enable a notification setting
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Notification setting enabled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /notifications/settings/{id}/disable:
+    post:
+      tags:
+        - Notifications
+      summary: Disable notification setting
+      description: Disable a notification setting
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Notification setting disabled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /notifications/settings/{id}/requests:
+    get:
+      tags:
+        - Notifications
+      summary: Get notification requests for a setting
+      description: Get notification requests associated with a specific notification setting
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/SizeParam'
+      responses:
+        '200':
+          description: List of notification requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessWithList'
+  /notifications/channels:
+    get:
+      tags:
+        - Notifications
+      summary: Get notification channels
+      description: Get a list of notification channels
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/SizeParam'
+      responses:
+        '200':
+          description: List of notification channels
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessWithList'
+    
+    post:
+      tags:
+        - Notifications
+      summary: Create notification channel
+      description: Create a new notification channel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Notification channel created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /notifications/channels/{id}:
+    get:
+      tags:
+        - Notifications
+      summary: Get notification channel by ID
+      description: Get a specific notification channel by ID
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Notification channel details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+    
+    put:
+      tags:
+        - Notifications
+      summary: Update notification channel
+      description: Update a notification channel
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Notification channel updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+                
+    delete:
+      tags:
+        - Notifications
+      summary: Delete notification channel
+      description: Delete a notification channel
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Notification channel deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /notifications/requests:
+    get:
+      tags:
+        - Notifications
+      summary: Get notification requests
+      description: Get a list of notification requests
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/SizeParam'
+      responses:
+        '200':
+          description: List of notification requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessWithList'
+
+  # Database paths
+  /databases:
+    get:
+      tags:
+        - Database
+      summary: Get database list
+      description: Get list of configured databases
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/SizeParam'
+        - $ref: '#/components/parameters/AllParam'
+      responses:
+        '200':
+          description: List of databases
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessWithList'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          list:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Database'
+    post:
+      tags:
+        - Database
+      summary: Create a new database
+      description: Add a new database configuration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Database'
+      responses:
+        '200':
+          description: Database created successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessWithData'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Database'
+  /databases/{id}:
+    get:
+      tags:
+        - Database
+      summary: Get database by ID
+      description: Get database configuration details by ID
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Database details
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessWithData'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Database'
+        '404':
+          description: Database not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      tags:
+        - Database
+      summary: Update database by ID
+      description: Update database configuration by ID
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Database'
+      responses:
+        '200':
+          description: Database updated successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessWithData'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Database'
+        '404':
+          description: Database not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /databases/{id}/connection/test:
+    post:
+      tags:
+        - Database
+      summary: Test database connection
+      description: Test connection to a configured database
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Connection test result
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessWithData'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          status:
+                            type: string
+                          message:
+                            type: string
+        '404':
+          description: Database not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /databases/{id}/metadata:
+    get:
+      tags:
+        - Database
+      summary: Get database metadata
+      description: Get metadata for a database
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Database metadata
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessWithData'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        additionalProperties: true
+        '404':
+          description: Database not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /databases/{id}/tables/metadata:
+    get:
+      tags:
+        - Database
+      summary: Get database tables metadata
+      description: Get metadata for all tables in a database
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Table metadata
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessWithData'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          additionalProperties: true
+        '404':
+          description: Database not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /databases/{id}/tables/metadata/get:
+    post:
+      tags:
+        - Database
+      summary: Get specific table metadata
+      description: Get metadata for specific tables in a database
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tables:
+                  type: array
+                  items:
+                    type: string
+                  description: List of table names
+      responses:
+        '200':
+          description: Table metadata
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessWithData'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          additionalProperties: true
+        '404':
+          description: Database not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /databases/{id}/tables/create:
+    post:
+      tags:
+        - Database
+      summary: Create a new table
+      description: Create a new table in the database
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Table name
+                columns:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: Column name
+                      type:
+                        type: string
+                        description: Column data type
+                      nullable:
+                        type: boolean
+                        description: Whether column allows NULL values
+                      primary:
+                        type: boolean
+                        description: Whether column is a primary key
+                      default:
+                        type: string
+                        description: Default value for the column
+      responses:
+        '200':
+          description: Table created successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessWithData'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          status:
+                            type: string
+        '404':
+          description: Database not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /databases/{id}/tables/modify:
+    post:
+      tags:
+        - Database
+      summary: Modify a table
+      description: Modify an existing table in the database
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Table name
+                columns:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: Column name
+                      new_name:
+                        type: string
+                        description: New column name (for rename operations)
+                      type:
+                        type: string
+                        description: Column data type
+                      action:
+                        type: string
+                        enum: [add, modify, drop]
+                        description: Action to perform on the column
+      responses:
+        '200':
+          description: Table modified successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /databases/{id}/tables/drop:
+    delete:
+      tags:
+        - Database
+      summary: Drop a table
+      description: Delete a table from the database
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Table name
+      responses:
+        '200':
+          description: Table dropped successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /databases/{id}/tables/rename:
+    post:
+      tags:
+        - Database
+      summary: Rename a table
+      description: Rename an existing table in the database
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Current table name
+                new_name:
+                  type: string
+                  description: New table name
+      responses:
+        '200':
+          description: Table renamed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /databases/{id}/tables/data:
+    get:
+      tags:
+        - Database
+      summary: Get table data
+      description: Get data from a database table
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/SizeParam'
+        - name: table
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Table name
+      responses:
+        '200':
+          description: Table data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessWithList'
+    post:
+      tags:
+        - Database
+      summary: Modify table data
+      description: Insert, update, or delete data in a database table
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                table:
+                  type: string
+                  description: Table name
+                action:
+                  type: string
+                  enum: [insert, update, delete]
+                  description: Action to perform
+                data:
+                  type: array
+                  items:
+                    type: object
+                    additionalProperties: true
+                  description: Data to insert or update
+                where:
+                  type: object
+                  additionalProperties: true
+                  description: Where condition for update or delete
+      responses:
+        '200':
+          description: Data modified successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /databases/{id}/tables/data/get:
+    post:
+      tags:
+        - Database
+      summary: Get filtered table data
+      description: Get data from a database table with filtering
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/SizeParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                table:
+                  type: string
+                  description: Table name
+                where:
+                  type: object
+                  additionalProperties: true
+                  description: Where conditions
+                sort:
+                  type: object
+                  additionalProperties: true
+                  description: Sort options
+      responses:
+        '200':
+          description: Filtered table data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessWithList'
+  /databases/{id}/columns/types:
+    get:
+      tags:
+        - Database
+      summary: Get column types
+      description: Get available column data types for a database
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Available column types
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /databases/{id}/query:
+    post:
+      tags:
+        - Database
+      summary: Execute a database query
+      description: Execute a custom SQL query on the database
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                  description: SQL query to execute
+      responses:
+        '200':
+          description: Query results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /databases/metrics:
+    get:
+      tags:
+        - Database
+      summary: Get database metrics
+      description: Get performance metrics for all databases
+      responses:
+        '200':
+          description: Database metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /databases/{id}/metrics/time-range:
+    get:
+      tags:
+        - Database
+      summary: Get time-range metrics
+      description: Get performance metrics for a database over a time range
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+        - name: start
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: Start time
+        - name: end
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: End time
+      responses:
+        '200':
+          description: Time-range metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /databases/{id}/metrics/current:
+    get:
+      tags:
+        - Database
+      summary: Get current metrics
+      description: Get current performance metrics for a database
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Current metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /databases/{id}/export/{type}:
+    post:
+      tags:
+        - Database
+      summary: Export database data
+      description: Export database data to a file
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+        - name: type
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [csv, json, sql]
+          description: Export file type
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tables:
+                  type: array
+                  items:
+                    type: string
+                  description: Tables to export
+      responses:
+        '200':
+          description: Export started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /databases/{id}/export/{type}/{exportId}:
+    get:
+      tags:
+        - Database
+      summary: Get export status
+      description: Get status of a database export
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+        - name: type
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Export file type
+        - name: exportId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Export ID
+      responses:
+        '200':
+          description: Export status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /databases/{id}/export/{type}/{exportId}/download:
+    get:
+      tags:
+        - Database
+      summary: Download export
+      description: Download an exported database file
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+        - name: type
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Export file type
+        - name: exportId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Export ID
+      responses:
+        '200':
+          description: File download
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+
+  # Users paths
+  /users:
+    $ref: './paths/users/users.yaml'
+  /users/{id}:
+    $ref: './paths/users/users_id.yaml'
+  /users/{id}/change-password:
+    $ref: './paths/users/users_id_changepassword.yaml'
+  /users/me:
+    $ref: './paths/users/users_me.yaml'
+  /users/me/change-password:
+    $ref: './paths/users/users_me_changepassword.yaml'
+
+  # Permissions paths
+  /roles:
+    get:
+      tags:
+        - Permissions
+      summary: Get roles list
+      description: Get list of all roles
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/SizeParam'
+        - $ref: '#/components/parameters/AllParam'
+      responses:
+        '200':
+          description: List of roles
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessWithList'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          list:
+                            type: array
+                            items:
+                              $ref: '#/components/schemas/Role'
+    post:
+      tags:
+        - Permissions
+      summary: Create role
+      description: Create a new role
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Role'
+      responses:
+        '200':
+          description: Role created successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessWithData'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Role'
+  /roles/{id}:
+    get:
+      tags:
+        - Permissions
+      summary: Get role by ID
+      description: Get detailed information about a role
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Role details
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessWithData'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Role'
+        '404':
+          description: Role not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      tags:
+        - Permissions
+      summary: Update role
+      description: Update a role
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Role'
+      responses:
+        '200':
+          description: Role updated successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessWithData'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Role'
+        '404':
+          description: Role not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      tags:
+        - Permissions
+      summary: Delete role
+      description: Delete a role by ID
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Role deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+        '404':
+          description: Role not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # System paths
+  /system-info:
+    get:
+      tags:
+        - System
+      summary: Get system information
+      responses:
+        '200':
+          description: System information
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessWithData'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          version:
+                            type: string
+                          mongo:
+                            type: string
+                          redis:
+                            type: string
+                          node:
+                            type: object
+  /stats:
+    get:
+      tags:
+        - System
+      summary: Get system statistics
+      responses:
+        '200':
+          description: System statistics
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessWithData'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          nodes:
+                            type: integer
+                          projects:
+                            type: integer
+                          spiders:
+                            type: integer
+                          tasks:
+                            type: integer
+                          schedules:
+                            type: integer
+                          users:
+                            type: integer
+  /settings:
+    get:
+      tags:
+        - System
+      summary: Get system settings
+      responses:
+        '200':
+          description: System settings
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessWithData'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        additionalProperties: true
+    post:
+      tags:
+        - System
+      summary: Update system settings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Settings updated successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessWithData'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        additionalProperties: true
+
+  # Export paths
+  /export/{type}:
+    post:
+      tags:
+        - Export
+      summary: Export data
+      description: Export data in the specified format
+      parameters:
+        - name: type
+          in: path
+          required: true
+          description: Export type (csv, json, etc.)
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filter:
+                  type: object
+                  description: Filter to apply to the data
+                fields:
+                  type: array
+                  items:
+                    type: string
+                  description: Fields to include in the export
+      responses:
+        '200':
+          description: Export initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /export/{type}/{exportId}:
+    get:
+      tags:
+        - Export
+      summary: Get export status
+      description: Get the status of an export operation
+      parameters:
+        - name: type
+          in: path
+          required: true
+          description: Export type (csv, json, etc.)
+          schema:
+            type: string
+        - name: exportId
+          in: path
+          required: true
+          description: Export ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Export status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+  /export/{type}/{exportId}/download:
+    get:
+      tags:
+        - Export
+      summary: Download export file
+      description: Download the exported file
+      parameters:
+        - name: type
+          in: path
+          required: true
+          description: Export type (csv, json, etc.)
+          schema:
+            type: string
+        - name: exportId
+          in: path
+          required: true
+          description: Export ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Export file
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+
+tags:
+  - name: Authentication
+    description: Authentication related operations
+  - name: Nodes
+    description: Node management operations
+  - name: Spiders
+    description: Spider management operations
+  - name: Projects
+    description: Project management operations
+  - name: Tasks
+    description: Task management operations
+  - name: Schedules
+    description: Schedule management operations
+  - name: Git
+    description: Git integration operations
+  - name: Dependencies
+    description: Dependency management operations
+  - name: Notifications
+    description: Notification system operations
+  - name: Database
+    description: Database operations
+  - name: Users
+    description: User management operations
+  - name: Permissions
+    description: Role-based access control operations
+  - name: System
+    description: System management operations
+  - name: Export
+    description: Export operations

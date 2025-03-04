@@ -1,0 +1,20 @@
+type: object
+properties:
+  _id:
+    $ref: '../types/ObjectId.yaml'
+  key:
+    type: string
+    description: Environment variable key
+  value:
+    type: string
+    description: Environment variable value
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time
+  created_by:
+    $ref: '../types/ObjectId.yaml'
+  updated_by:
+    $ref: '../types/ObjectId.yaml' 

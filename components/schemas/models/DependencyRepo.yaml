@@ -1,0 +1,34 @@
+type: object
+properties:
+  _id:
+    $ref: '../types/ObjectId.yaml'
+  name:
+    type: string
+    description: Name of the dependency repository
+  url:
+    type: string
+    description: URL of the dependency repository
+  type:
+    type: string
+    enum: [python, node]
+    description: Type of repository
+  auth_required:
+    type: boolean
+    description: Whether authentication is required
+  username:
+    type: string
+    description: Username for repository authentication
+  password:
+    type: string
+    writeOnly: true
+    description: Password or token for repository authentication
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time
+  created_by:
+    $ref: '../types/ObjectId.yaml'
+  updated_by:
+    $ref: '../types/ObjectId.yaml' 

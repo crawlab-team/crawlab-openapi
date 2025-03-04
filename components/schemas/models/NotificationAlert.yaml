@@ -1,0 +1,48 @@
+type: object
+properties:
+  _id:
+    $ref: '../types/ObjectId.yaml'
+  name:
+    type: string
+    description: Name of the notification alert
+  description:
+    type: string
+    description: Description of the notification alert
+  enabled:
+    type: boolean
+    description: Whether this notification alert is enabled
+  has_metric_target:
+    type: boolean
+    description: Whether this alert has a metric target
+  metric_target_id:
+    $ref: '../types/ObjectId.yaml'
+    description: ID of the metric target
+  metric_name:
+    type: string
+    description: Name of the metric to monitor
+  operator:
+    type: string
+    description: Comparison operator for the alert condition
+  lasting_seconds:
+    type: integer
+    description: Duration in seconds the condition must be true
+  target_value:
+    type: number
+    format: float
+    description: Target value for comparison
+  level:
+    type: string
+    description: Alert severity level
+  template_key:
+    type: string
+    description: Key for the notification template
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time
+  created_by:
+    $ref: '../types/ObjectId.yaml'
+  updated_by:
+    $ref: '../types/ObjectId.yaml' 

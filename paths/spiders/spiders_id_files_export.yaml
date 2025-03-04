@@ -1,0 +1,16 @@
+post:
+  operationId: exportSpiderFiles
+  tags:
+    - Spiders
+    - Export
+  summary: Export spider files
+  description: Export spider files to a downloadable file
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Files exported
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

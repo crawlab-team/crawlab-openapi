@@ -1,0 +1,49 @@
+type: object
+properties:
+  _id:
+    $ref: '../types/ObjectId.yaml'
+  status:
+    type: string
+    description: Status of the notification request
+  error:
+    type: string
+    description: Error message if the notification failed
+  title:
+    type: string
+    description: Title of the notification
+  content:
+    type: string
+    description: Content of the notification
+  sender_email:
+    type: string
+    description: Email address of the sender
+  sender_name:
+    type: string
+    description: Name of the sender
+  mail_to:
+    type: array
+    items:
+      type: string
+    description: List of recipient email addresses
+  mail_cc:
+    type: array
+    items:
+      type: string
+    description: List of CC email addresses
+  mail_bcc:
+    type: array
+    items:
+      type: string
+    description: List of BCC email addresses
+  channel_id:
+    $ref: '../types/ObjectId.yaml'
+    description: ID of the notification channel
+  setting_id:
+    $ref: '../types/ObjectId.yaml'
+    description: ID of the notification setting
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time 

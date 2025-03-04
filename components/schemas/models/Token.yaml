@@ -1,0 +1,11 @@
+type: object
+properties:
+  _id:
+    $ref: '../types/ObjectId.yaml'
+  name:
+    type: string
+  token:
+    type: string
+  created_at:
+    type: string
+    format: date-time 

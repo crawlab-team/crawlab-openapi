@@ -1,0 +1,15 @@
+get:
+  operationId: getNodeCurrentMetrics
+  tags:
+    - Nodes
+  summary: Get current metrics for a node
+  description: Get current performance metrics for a node
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Current metrics
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

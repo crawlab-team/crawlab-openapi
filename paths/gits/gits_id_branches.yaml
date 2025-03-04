@@ -1,0 +1,47 @@
+get:
+  operationId: getGitBranches
+  tags:
+    - Git
+  summary: Get all branches of a Git repository
+  description: Returns a list of all branches (local and remote) in the Git repository
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: List of branches in the repository
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      branches:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              description: Branch name
+                            is_current:
+                              type: boolean
+                              description: Whether this is the currently checked out branch
+                            is_remote:
+                              type: boolean
+                              description: Whether this is a remote branch
+    '404':
+      description: Git repository not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml'
+    '400':
+      description: Git operation failed
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml' 

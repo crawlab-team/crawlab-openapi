@@ -1,0 +1,76 @@
+get:
+  operationId: getProjectById
+  tags:
+    - Projects
+  summary: Get project by ID
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Project details
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    $ref: '../../components/schemas/models/Project.yaml'
+    '404':
+      description: Project not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml'
+put:
+  operationId: updateProject
+  tags:
+    - Projects
+  summary: Update project by ID
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/models/Project.yaml'
+  responses:
+    '200':
+      description: Project updated successfully
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    $ref: '../../components/schemas/models/Project.yaml'
+    '404':
+      description: Project not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml'
+delete:
+  operationId: deleteProjectById
+  tags:
+    - Projects
+  summary: Delete project by ID
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Project deleted successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml'
+    '404':
+      description: Project not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml' 

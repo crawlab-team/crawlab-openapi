@@ -1,0 +1,62 @@
+allOf:
+  - $ref: './Base.yaml'
+  - type: object
+    properties:
+      spider_id:
+        allOf:
+          - $ref: '../types/ObjectId.yaml'
+          - description: The spider ID associated with this task
+      status:
+        type: string
+        enum: [pending, running, finished, error, cancelled]
+      node_id:
+        allOf:
+          - $ref: '../types/ObjectId.yaml'
+          - description: The node ID where this task is running
+      cmd:
+        type: string
+        description: Command to run the task
+      param:
+        type: string
+        description: Task parameters
+      error:
+        type: string
+        description: Error message if task failed
+      pid:
+        type: integer
+        description: Process ID of the running task
+      schedule_id:
+        allOf:
+          - $ref: '../types/ObjectId.yaml'
+          - description: The schedule ID that triggered this task
+      type:
+        type: string
+        description: Type of task
+      mode:
+        type: string
+        description: Execution mode
+      priority:
+        type: integer
+        format: int32
+        description: Task priority
+      node_ids:
+        type: array
+        items:
+          $ref: '../types/ObjectId.yaml'
+        description: List of node IDs for task execution
+      stat:
+        $ref: '../models/TaskStat.yaml'
+      spider:
+        $ref: '../models/Spider.yaml'
+      schedule:
+        $ref: '../models/Schedule.yaml'
+      node:
+        $ref: '../models/Node.yaml'
+      result_count:
+        type: integer
+        format: int64
+      error_count:
+        type: integer
+        format: int64
+      error_message:
+        type: string

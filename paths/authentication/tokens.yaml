@@ -1,0 +1,53 @@
+get:
+  operationId: getTokenList
+  tags:
+    - Authentication
+  summary: Get list of API tokens
+  parameters:
+    - $ref: '../../components/parameters/PageParam.yaml'
+    - $ref: '../../components/parameters/SizeParam.yaml'
+  responses:
+    '200':
+      description: List of tokens
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithList.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      list:
+                        type: array
+                        items:
+                          $ref: '../../components/schemas/models/Token.yaml'
+post:
+  operationId: createToken
+  tags:
+    - Authentication
+  summary: Create a new API token
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - name
+          properties:
+            name:
+              type: string
+  responses:
+    '200':
+      description: Token created successfully
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    $ref: '../../components/schemas/models/Token.yaml'

@@ -1,0 +1,11 @@
+allOf:
+  - $ref: './Base.yaml'
+  - type: object
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+      spiders:
+        type: integer
+        description: Number of spiders in this project

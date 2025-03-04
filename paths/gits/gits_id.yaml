@@ -1,0 +1,102 @@
+get:
+  operationId: getGitById
+  tags:
+    - Git
+  summary: Get Git repository by ID
+  description: Returns details of a specific Git repository
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Git repository details
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    $ref: '../../components/schemas/models/Git.yaml'
+    '404':
+      description: Git repository not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml'
+put:
+  operationId: updateGit
+  tags:
+    - Git
+  summary: Update Git repository
+  description: Update details of a specific Git repository
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Name of the Git repository
+            url:
+              type: string
+              description: URL of the Git repository
+            auth_type:
+              type: string
+              enum: [none, http, ssh]
+              description: Authentication type for the Git repository
+            username:
+              type: string
+              description: Username for HTTP authentication
+            password:
+              type: string
+              description: Password/token for HTTP authentication
+            ssh_key:
+              type: string
+              description: SSH private key for SSH authentication
+            ssh_password:
+              type: string
+              description: SSH key password if the key is password-protected
+  responses:
+    '200':
+      description: Git repository updated successfully
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    $ref: '../../components/schemas/models/Git.yaml'
+    '404':
+      description: Git repository not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml'
+delete:
+  operationId: deleteGit
+  tags:
+    - Git
+  summary: Delete Git repository
+  description: Delete a specific Git repository
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Git repository deleted successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml'
+    '404':
+      description: Git repository not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml' 

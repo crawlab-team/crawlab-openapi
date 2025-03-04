@@ -1,0 +1,55 @@
+get:
+  operationId: getCurrentBranch
+  tags:
+    - Git
+  summary: Get current branch of a Git repository
+  description: Returns information about the currently checked out branch
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Current branch information
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      branch:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            description: Current branch name
+                          commit:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                description: SHA hash of the latest commit
+                              message:
+                                type: string
+                                description: Commit message
+                              author:
+                                type: string
+                                description: Author of the commit
+                              date:
+                                type: string
+                                format: date-time
+                                description: Commit date
+    '404':
+      description: Git repository not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml'
+    '400':
+      description: Git operation failed
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml' 

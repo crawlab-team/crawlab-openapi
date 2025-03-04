@@ -1,0 +1,87 @@
+type: object
+properties:
+  _id:
+    $ref: '../types/ObjectId.yaml'
+  name:
+    type: string
+    description: Name of the notification setting
+  description:
+    type: string
+    description: Description of the notification setting
+  enabled:
+    type: boolean
+    description: Whether this notification setting is enabled
+  title:
+    type: string
+    description: Title of the notification
+  template:
+    type: string
+    description: Message template for the notification
+  template_mode:
+    type: string
+    description: Mode of the template (e.g., markdown, rich text)
+  template_markdown:
+    type: string
+    description: Markdown template content
+  template_rich_text:
+    type: string
+    description: Rich text template content
+  template_rich_text_json:
+    type: string
+    description: JSON representation of rich text template
+  template_theme:
+    type: string
+    description: Theme for the template
+  task_trigger:
+    type: string
+    description: Task-related trigger for notification
+  trigger:
+    type: string
+    description: General trigger for notification
+  sender_email:
+    type: string
+    description: Email address of the sender
+  use_custom_sender_email:
+    type: boolean
+    description: Whether to use a custom sender email
+  sender_name:
+    type: string
+    description: Name of the sender
+  mail_to:
+    type: array
+    items:
+      type: string
+    description: List of recipient email addresses
+  mail_cc:
+    type: array
+    items:
+      type: string
+    description: List of CC email addresses
+  mail_bcc:
+    type: array
+    items:
+      type: string
+    description: List of BCC email addresses
+  channel_ids:
+    type: array
+    items:
+      $ref: '../types/ObjectId.yaml'
+    description: IDs of notification channels to use
+  channels:
+    type: array
+    items:
+      $ref: './NotificationChannel.yaml'
+    description: Notification channels (populated field, not stored)
+  alert_id:
+    $ref: '../types/ObjectId.yaml'
+    description: ID of associated alert
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time
+  created_by:
+    $ref: '../types/ObjectId.yaml'
+  updated_by:
+    $ref: '../types/ObjectId.yaml' 

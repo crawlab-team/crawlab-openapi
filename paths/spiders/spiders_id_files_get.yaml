@@ -1,0 +1,20 @@
+get:
+  operationId: getSpiderFileContent
+  tags:
+    - Spiders
+  summary: Get content of a spider file
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+    - name: path
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Path to the file
+  responses:
+    '200':
+      description: File content
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

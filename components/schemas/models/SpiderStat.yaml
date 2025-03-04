@@ -1,0 +1,46 @@
+type: object
+properties:
+  _id:
+    $ref: '../types/ObjectId.yaml'
+  last_task_id:
+    $ref: '../types/ObjectId.yaml'
+    description: ID of the last task run for this spider
+  last_task:
+    $ref: '../models/Task.yaml'
+    description: Details of the last task
+  tasks:
+    type: integer
+    description: Total number of tasks for this spider
+  results:
+    type: integer
+    description: Total number of results from all tasks
+  wait_duration:
+    type: integer
+    format: int64
+    description: Total wait duration in seconds
+  runtime_duration:
+    type: integer
+    format: int64
+    description: Total runtime duration in seconds
+  total_duration:
+    type: integer
+    format: int64
+    description: Total duration in seconds
+  average_wait_duration:
+    type: integer
+    format: int64
+    description: Average wait duration in seconds
+  average_runtime_duration:
+    type: integer
+    format: int64
+    description: Average runtime duration in seconds
+  average_total_duration:
+    type: integer
+    format: int64
+    description: Average total duration in seconds
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time 

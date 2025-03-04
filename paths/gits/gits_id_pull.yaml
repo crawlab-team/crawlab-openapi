@@ -1,0 +1,45 @@
+post:
+  operationId: pullGit
+  tags:
+    - Git
+  summary: Pull changes from remote repository
+  description: Pull changes from a remote repository to the local repository
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: false
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            remote:
+              type: string
+              description: Name of the remote to pull from
+              default: origin
+            branch:
+              type: string
+              description: Name of the branch to pull
+            rebase:
+              type: boolean
+              description: Whether to rebase when pulling
+              default: false
+  responses:
+    '200':
+      description: Changes pulled successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml'
+    '404':
+      description: Git repository not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml'
+    '400':
+      description: Git operation failed or conflict occurred
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml' 

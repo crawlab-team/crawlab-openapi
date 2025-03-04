@@ -1,0 +1,14 @@
+get:
+  operationId: getTaskLogs
+  tags:
+    - Tasks
+  summary: Get task logs
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Task logs
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

@@ -1,0 +1,11 @@
+type: object
+properties:
+  name:
+    type: string
+    description: Reference name
+  type:
+    type: string
+    description: Reference type (branch, tag)
+  hash:
+    type: string
+    description: Git commit hash 

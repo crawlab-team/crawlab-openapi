@@ -1,0 +1,95 @@
+get:
+  operationId: getUserList
+  tags:
+    - Users
+  summary: Get list of users
+  parameters:
+    - $ref: '../../components/parameters/PageParam.yaml'
+    - $ref: '../../components/parameters/SizeParam.yaml'
+    - $ref: '../../components/parameters/AllParam.yaml'
+  responses:
+    '200':
+      description: List of users
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithList.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      list:
+                        type: array
+                        items:
+                          $ref: '../../components/schemas/models/User.yaml'
+post:
+  operationId: createUser
+  tags:
+    - Users
+  summary: Create a new user
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - username
+            - password
+          properties:
+            username:
+              type: string
+            password:
+              type: string
+            email:
+              type: string
+              format: email
+            role:
+              type: string
+            role_id:
+              $ref: '../../components/schemas/types/ObjectId.yaml'
+  responses:
+    '200':
+      description: User created successfully
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    $ref: '../../components/schemas/models/User.yaml'
+    '400':
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml'
+delete:
+  operationId: deleteUsers
+  tags:
+    - Users
+  summary: Delete multiple users
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - ids
+          properties:
+            ids:
+              type: array
+              items:
+                type: string
+  responses:
+    '200':
+      description: Users deleted successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml'

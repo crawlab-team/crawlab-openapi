@@ -1,0 +1,24 @@
+post:
+  operationId: deleteSpiderFile
+  tags:
+    - Spiders
+  summary: Delete spider file
+  description: Delete a file in the spider directory
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            path:
+              type: string
+  responses:
+    '200':
+      description: File deleted
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

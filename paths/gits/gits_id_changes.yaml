@@ -1,0 +1,48 @@
+get:
+  operationId: getGitChanges
+  tags:
+    - Git
+  summary: Get changes in a Git repository
+  description: Returns a list of changes (modified, added, deleted files) in the repository
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: List of changes in the repository
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      changes:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            path:
+                              type: string
+                              description: File path
+                            status:
+                              type: string
+                              enum: [added, modified, deleted, renamed, untracked]
+                              description: Status of the file
+                            staged:
+                              type: boolean
+                              description: Whether the change is staged for commit
+    '404':
+      description: Git repository not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml'
+    '400':
+      description: Git operation failed
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml' 

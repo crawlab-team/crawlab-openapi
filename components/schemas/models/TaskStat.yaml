@@ -1,0 +1,34 @@
+type: object
+properties:
+  _id:
+    $ref: '../types/ObjectId.yaml'
+  start_ts:
+    type: string
+    format: date-time
+    description: When the task started
+  end_ts:
+    type: string
+    format: date-time
+    description: When the task ended
+  wait_duration:
+    type: integer
+    format: int64
+    description: Wait duration in milliseconds
+  runtime_duration:
+    type: integer
+    format: int64
+    description: Runtime duration in milliseconds
+  total_duration:
+    type: integer
+    format: int64
+    description: Total duration in milliseconds
+  result_count:
+    type: integer
+    format: int64
+    description: Number of results from the task
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time 

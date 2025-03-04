@@ -1,0 +1,14 @@
+post:
+  operationId: cancelTask
+  tags:
+    - Tasks
+  summary: Cancel a running task
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Task cancelled successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

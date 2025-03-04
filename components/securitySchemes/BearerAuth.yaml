@@ -1,0 +1,6 @@
+type: http
+scheme: bearer
+bearerFormat: JWT
+name: BearerAuth
+description: Bearer token authentication
+in: header

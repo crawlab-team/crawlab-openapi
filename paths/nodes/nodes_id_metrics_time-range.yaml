@@ -1,0 +1,27 @@
+get:
+  operationId: getNodeTimeRangeMetrics
+  tags:
+    - Nodes
+  summary: Get time-range metrics for a node
+  description: Get performance metrics for a node over a time range
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+    - name: start
+      in: query
+      schema:
+        type: string
+        format: date-time
+      description: Start time
+    - name: end
+      in: query
+      schema:
+        type: string
+        format: date-time
+      description: End time
+  responses:
+    '200':
+      description: Time-range metrics
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

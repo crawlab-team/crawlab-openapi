@@ -1,0 +1,37 @@
+allOf:
+  - $ref: './Base.yaml'
+  - type: object
+    properties:
+      key:
+        type: string
+        description: Unique key for the node
+      name:
+        type: string
+      ip:
+        type: string
+      mac:
+        type: string
+      hostname:
+        type: string
+      description:
+        type: string
+      is_master:
+        type: boolean
+        description: Whether this node is the master node
+      status:
+        type: string
+      enabled:
+        type: boolean
+      active:
+        type: boolean
+        description: Whether this node is currently active
+      active_at:
+        type: string
+        format: date-time
+        description: When this node was last active
+      current_runners:
+        type: integer
+        description: Number of tasks currently running on this node
+      max_runners:
+        type: integer
+        description: Maximum number of tasks that can run on this node 

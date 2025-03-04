@@ -1,0 +1,33 @@
+post:
+  operationId: saveSpiderDirectory
+  tags:
+    - Spiders
+  summary: Save spider directory
+  description: Save all files in a spider directory
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            path:
+              type: string
+            files:
+              type: array
+              items:
+                type: object
+                properties:
+                  path:
+                    type: string
+                  content:
+                    type: string
+  responses:
+    '200':
+      description: Directory saved
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

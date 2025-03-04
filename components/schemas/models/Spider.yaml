@@ -1,0 +1,56 @@
+allOf:
+  - $ref: './Base.yaml'
+  - type: object
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+      cmd:
+        type: string
+        description: Command to run the spider
+      param:
+        type: string
+        description: Default task parameters
+      priority:
+        type: integer
+        format: int32
+      project_id:
+        allOf:
+          - $ref: '../types/ObjectId.yaml'
+          - description: Project ID
+      col_id:
+        allOf:
+          - $ref: '../types/ObjectId.yaml'
+          - description: Data collection ID
+      col_name:
+        type: string
+        description: Data collection name
+      db_name:
+        type: string
+        description: Database name
+      data_source_id:
+        allOf:
+          - $ref: '../types/ObjectId.yaml'
+          - description: Database source ID
+      data_source:
+        $ref: '../models/Database.yaml'
+      mode:
+        type: string
+        description: Default task mode
+      node_ids:
+        type: array
+        items:
+          $ref: '../types/ObjectId.yaml'
+        description: Default node IDs for tasks
+      git_id:
+        allOf:
+          - $ref: '../types/ObjectId.yaml'
+          - description: Git repository ID
+      git_root_path:
+        type: string
+        description: Root path in the Git repository
+      git:
+        $ref: '../models/Git.yaml'
+      stat:
+        $ref: '../models/SpiderStat.yaml'

@@ -1,0 +1,6 @@
+name: size
+in: query
+schema:
+  type: integer
+  default: 10
+description: Number of items per page

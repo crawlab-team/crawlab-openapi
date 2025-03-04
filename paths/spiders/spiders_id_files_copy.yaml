@@ -1,0 +1,26 @@
+post:
+  operationId: copySpiderFile
+  tags:
+    - Spiders
+  summary: Copy spider file
+  description: Copy a file in the spider directory
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            path:
+              type: string
+            new_path:
+              type: string
+  responses:
+    '200':
+      description: File copied
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

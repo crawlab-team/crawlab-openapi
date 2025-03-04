@@ -1,0 +1,17 @@
+get:
+  operationId: getMe
+  tags:
+    - Users
+  summary: Get current user information
+  responses:
+    '200':
+      description: Current user details
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    $ref: '../../components/schemas/models/User.yaml'

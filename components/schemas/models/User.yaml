@@ -1,0 +1,20 @@
+allOf:
+  - $ref: './Base.yaml'
+  - type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+        writeOnly: true
+      email:
+        type: string
+        format: email
+      role:
+        type: string
+      role_id:
+        allOf:
+          - $ref: '../types/ObjectId.yaml'
+          - description: The role id for the user
+      root_admin_role:
+        type: boolean

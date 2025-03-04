@@ -1,0 +1,43 @@
+post:
+  operationId: checkoutBranch
+  tags:
+    - Git
+  summary: Checkout a branch
+  description: Switch to a different branch in the Git repository
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - branch
+          properties:
+            branch:
+              type: string
+              description: Name of the branch to checkout
+            create:
+              type: boolean
+              description: Whether to create the branch if it doesn't exist
+              default: false
+  responses:
+    '200':
+      description: Branch checked out successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml'
+    '404':
+      description: Git repository or branch not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml'
+    '400':
+      description: Git operation failed
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml' 

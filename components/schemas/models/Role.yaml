@@ -1,0 +1,25 @@
+type: object
+properties:
+  _id:
+    $ref: '../types/ObjectId.yaml'
+  name:
+    type: string
+    description: Name of the role
+  description:
+    type: string
+    description: Description of the role
+  permissions:
+    type: array
+    items:
+      type: string
+    description: List of permission keys assigned to this role
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time
+  created_by:
+    $ref: '../types/ObjectId.yaml'
+  updated_by:
+    $ref: '../types/ObjectId.yaml' 

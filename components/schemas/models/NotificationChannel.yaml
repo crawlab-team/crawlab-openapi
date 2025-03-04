@@ -1,0 +1,52 @@
+type: object
+properties:
+  _id:
+    $ref: '../types/ObjectId.yaml'
+  name:
+    type: string
+    description: Name of the notification channel
+  description:
+    type: string
+    description: Description of the notification channel
+  type:
+    type: string
+    enum: [mail, im]
+    description: Type of notification channel (mail or im)
+  provider:
+    type: string
+    enum: [gmail, outlook, yahoo, icloud, aol, zoho, qq, 163, exmail, slack, telegram, discord, ms_teams, wechat_work, dingtalk, lark]
+    description: Provider of the notification channel (mail providers like gmail, outlook, etc. or IM providers like slack, telegram, etc.)
+  smtp_server:
+    type: string
+    description: SMTP server for email notifications
+  smtp_port:
+    type: integer
+    description: SMTP port for email notifications
+  smtp_username:
+    type: string
+    description: SMTP username for email notifications
+  smtp_password:
+    type: string
+    description: SMTP password for email notifications
+  webhook_url:
+    type: string
+    description: Webhook URL for webhook notifications
+  telegram_bot_token:
+    type: string
+    description: Telegram bot token for Telegram notifications
+  telegram_chat_id:
+    type: string
+    description: Telegram chat ID for Telegram notifications
+  google_oauth2_json:
+    type: string
+    description: Google OAuth2 JSON for Google-based notifications
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time
+  created_by:
+    $ref: '../types/ObjectId.yaml'
+  updated_by:
+    $ref: '../types/ObjectId.yaml' 

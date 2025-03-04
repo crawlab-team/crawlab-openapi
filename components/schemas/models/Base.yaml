@@ -1,0 +1,22 @@
+type: object
+properties:
+  _id:
+    allOf:
+      - $ref: '../types/ObjectId.yaml'
+      - description: The unique identifier for the object
+  created_at:
+    type: string
+    format: date-time
+    description: The date and time the object was created
+  updated_at:
+    type: string
+    format: date-time
+    description: The date and time the object was last updated
+  created_by:
+    allOf:
+      - $ref: '../types/ObjectId.yaml'
+      - description: The user id who created the object
+  updated_by:
+    allOf:
+      - $ref: '../types/ObjectId.yaml'
+      - description: The user id who last updated the object

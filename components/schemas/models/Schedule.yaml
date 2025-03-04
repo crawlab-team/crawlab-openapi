@@ -1,0 +1,18 @@
+allOf:
+  - $ref: './Base.yaml'
+  - type: object
+    properties:
+      name:
+        type: string
+      spider_id:
+        allOf:
+          - $ref: '../types/ObjectId.yaml'
+          - description: Spider ID
+      cron:
+        type: string
+        description: Cron expression for schedule
+      param:
+        type: object
+        description: Schedule parameters
+      enabled:
+        type: boolean

@@ -1,0 +1,85 @@
+type: object
+properties:
+  _id:
+    $ref: '../types/ObjectId.yaml'
+  name:
+    type: string
+  description:
+    type: string
+  data_source:
+    type: string
+    description: Type of database (mongodb, mysql, etc.)
+  host:
+    type: string
+  port:
+    type: integer
+  uri:
+    type: string
+  database:
+    type: string
+  username:
+    type: string
+  password:
+    type: string
+    writeOnly: true
+  status:
+    type: string
+  error:
+    type: string
+  active:
+    type: boolean
+  active_at:
+    type: string
+    format: date-time
+  is_default:
+    type: boolean
+  mongo_params:
+    type: object
+    properties:
+      auth_source:
+        type: string
+      auth_mechanism:
+        type: string
+  postgres_params:
+    type: object
+    properties:
+      ssl_mode:
+        type: string
+  snowflake_params:
+    type: object
+    properties:
+      account:
+        type: string
+      schema:
+        type: string
+      warehouse:
+        type: string
+      role:
+        type: string
+  cassandra_params:
+    type: object
+    properties:
+      keyspace:
+        type: string
+  hive_params:
+    type: object
+    properties:
+      auth:
+        type: string
+  redis_params:
+    type: object
+    properties:
+      db:
+        type: integer
+  auth_db:
+    type: string
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time
+  created_by:
+    $ref: '../types/ObjectId.yaml'
+  updated_by:
+    $ref: '../types/ObjectId.yaml' 

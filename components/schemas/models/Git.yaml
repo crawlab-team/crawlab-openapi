@@ -1,0 +1,46 @@
+allOf:
+  - $ref: './Base.yaml'
+  - type: object
+    properties:
+      url:
+        type: string
+        description: Git repository URL
+      name:
+        type: string
+        description: Git repository name
+      auth_type:
+        type: string
+        description: Authentication type (e.g., http, ssh)
+      username:
+        type: string
+        description: Git username for authentication
+      password:
+        type: string
+        writeOnly: true
+        description: Git password or token for authentication
+      current_branch:
+        type: string
+        description: Current branch of the repository
+      status:
+        type: string
+        description: Status of the repository (e.g., cloning, pulling, error)
+      error:
+        type: string
+        description: Error message if any
+      refs:
+        type: array
+        items:
+          $ref: './GitRef.yaml'
+        description: Git references (branches, tags)
+      refs_updated_at:
+        type: string
+        format: date-time
+        description: When refs were last updated
+      clone_logs:
+        type: array
+        items:
+          type: string
+        description: Logs from the clone operation
+      auto_pull:
+        type: boolean
+        description: Whether to automatically pull before running tasks

@@ -1,0 +1,23 @@
+get:
+  operationId: getNodeList
+  tags:
+    - Nodes
+  summary: Get list of nodes
+  parameters:
+    - $ref: '../../components/parameters/PageParam.yaml'
+    - $ref: '../../components/parameters/SizeParam.yaml'
+    - $ref: '../../components/parameters/AllParam.yaml'
+  responses:
+    '200':
+      description: List of nodes
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithList.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '../../components/schemas/models/Node.yaml' 

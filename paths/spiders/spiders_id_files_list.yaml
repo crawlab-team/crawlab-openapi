@@ -1,0 +1,19 @@
+get:
+  operationId: listSpiderFiles
+  tags:
+    - Spiders
+  summary: List spider files
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+    - name: path
+      in: query
+      schema:
+        type: string
+      description: Path in the spider directory
+  responses:
+    '200':
+      description: List of files
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

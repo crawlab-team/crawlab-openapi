@@ -1,0 +1,27 @@
+get:
+  operationId: getDatabaseMetadata
+  tags:
+    - Database
+  summary: Get database metadata
+  description: Get metadata for a database
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Database metadata
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    additionalProperties: true
+    '404':
+      description: Database not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml' 

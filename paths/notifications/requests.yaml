@@ -1,0 +1,16 @@
+get:
+  operationId: getNotificationRequests
+  tags:
+    - Notifications
+  summary: Get notification requests
+  description: Get a list of notification requests
+  parameters:
+    - $ref: '../../components/parameters/PageParam.yaml'
+    - $ref: '../../components/parameters/SizeParam.yaml'
+  responses:
+    '200':
+      description: List of notification requests
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/SuccessWithList.yaml' 

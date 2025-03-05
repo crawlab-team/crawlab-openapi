@@ -1,0 +1,63 @@
+get:
+  operationId: getDependencySettingById
+  tags:
+    - Dependencies
+  summary: Get dependency setting by ID
+  description: Get a specific dependency setting by ID
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Dependency setting details
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    $ref: '../../components/schemas/models/DependencyConfig.yaml'
+
+put:
+  operationId: updateDependencySetting
+  tags:
+    - Dependencies
+  summary: Update dependency setting
+  description: Update a dependency setting
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      description: Dependency setting updated
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    $ref: '../../components/schemas/models/DependencyConfig.yaml'
+
+delete:
+  operationId: deleteDependencySetting
+  tags:
+    - Dependencies
+  summary: Delete dependency setting
+  description: Delete a dependency setting
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Dependency setting deleted
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

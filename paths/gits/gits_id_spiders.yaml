@@ -1,0 +1,56 @@
+get:
+  operationId: getGitSpiders
+  tags:
+    - Git
+  summary: Get spiders in Git repository
+  description: Get list of spiders in a Git repository
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: List of spiders
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithList.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      list:
+                        type: array
+                        items:
+                          $ref: '../../components/schemas/models/Spider.yaml'
+post:
+  operationId: createSpiderFromGit
+  tags:
+    - Git
+  summary: Create spider from Git repository
+  description: Create a new spider from files in a Git repository
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - path
+          properties:
+            path:
+              type: string
+  responses:
+    '200':
+      description: Spider created successfully
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    $ref: '../../components/schemas/models/Spider.yaml' 

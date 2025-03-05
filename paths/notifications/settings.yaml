@@ -1,0 +1,36 @@
+get:
+  operationId: getNotificationSettings
+  tags:
+    - Notifications
+  summary: Get notification settings
+  description: Get a list of notification settings
+  parameters:
+    - $ref: '../../components/parameters/PageParam.yaml'
+    - $ref: '../../components/parameters/SizeParam.yaml'
+  responses:
+    '200':
+      description: List of notification settings
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/SuccessWithList.yaml'
+
+post:
+  operationId: createNotificationSetting
+  tags:
+    - Notifications
+  summary: Create notification setting
+  description: Create a new notification setting
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      description: Notification setting created
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

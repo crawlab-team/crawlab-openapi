@@ -1,0 +1,25 @@
+get:
+  operationId: getGitLogs
+  tags:
+    - Git
+  summary: Get Git logs
+  description: Get commit history logs from the Git repository
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: List of logs
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithList.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      list:
+                        type: array
+                        items:
+                          type: object 

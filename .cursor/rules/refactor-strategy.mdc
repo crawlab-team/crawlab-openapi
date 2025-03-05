@@ -1,0 +1,8 @@
+---
+description: Strategy for refactoring the specs
+globs: *.yaml
+---
+When refactoring paths openapi.yaml, please follow below guidelines:
+- Process in batches by tag
+- Take a look at how many paths to refactor
+- For each API path, you should always add operationId

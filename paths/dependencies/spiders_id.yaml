@@ -1,0 +1,15 @@
+get:
+  operationId: getSpiderDependencies
+  tags:
+    - Dependencies
+  summary: Get spider dependencies
+  description: Get dependencies for a specific spider
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Spider dependencies
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

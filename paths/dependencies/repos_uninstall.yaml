@@ -1,0 +1,31 @@
+post:
+  operationId: uninstallDependency
+  tags:
+    - Dependencies
+  summary: Uninstall dependency
+  description: Uninstall a dependency
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Dependency name
+  responses:
+    '200':
+      description: Dependency uninstalled
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      uninstalled:
+                        type: boolean 

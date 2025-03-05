@@ -1,0 +1,26 @@
+get:
+  operationId: getExportStatus
+  tags:
+    - Export
+  summary: Get export status
+  description: Get the status of an export operation
+  parameters:
+    - name: type
+      in: path
+      required: true
+      description: Export type (csv, json, etc.)
+      schema:
+        type: string
+    - name: exportId
+      in: path
+      required: true
+      description: Export ID
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Export status
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

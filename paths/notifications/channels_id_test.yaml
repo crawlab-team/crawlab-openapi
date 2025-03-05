@@ -1,0 +1,25 @@
+post:
+  operationId: testNotificationChannel
+  tags:
+    - Notifications
+  summary: Test notification channel
+  description: Test a notification channel by sending a test notification
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Test message to send
+  responses:
+    '200':
+      description: Test notification sent
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

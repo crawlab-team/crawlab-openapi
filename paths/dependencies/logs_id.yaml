@@ -1,0 +1,15 @@
+get:
+  operationId: getDependencyLogs
+  tags:
+    - Dependencies
+  summary: Get dependency logs
+  description: Get logs for a dependency operation
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Dependency logs
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

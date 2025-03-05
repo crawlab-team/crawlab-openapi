@@ -1,0 +1,25 @@
+delete:
+  operationId: dropDatabaseTable
+  tags:
+    - Database
+  summary: Drop a table
+  description: Delete a table from the database
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Table name
+  responses:
+    '200':
+      description: Table dropped successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

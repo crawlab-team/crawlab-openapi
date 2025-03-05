@@ -1,0 +1,61 @@
+post:
+  operationId: createDatabaseTable
+  tags:
+    - Database
+  summary: Create a new table
+  description: Create a new table in the database
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Table name
+            columns:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Column name
+                  type:
+                    type: string
+                    description: Column data type
+                  nullable:
+                    type: boolean
+                    description: Whether column allows NULL values
+                  primary:
+                    type: boolean
+                    description: Whether column is a primary key
+                  default:
+                    type: string
+                    description: Default value for the column
+  responses:
+    '200':
+      description: Table created successfully
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      status:
+                        type: string
+    '404':
+      description: Database not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml' 

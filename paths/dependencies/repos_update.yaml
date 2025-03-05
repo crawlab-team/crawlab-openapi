@@ -1,0 +1,21 @@
+post:
+  operationId: updateDependencyRepos
+  tags:
+    - Dependencies
+  summary: Update dependency repositories
+  description: Update the list of dependency repositories
+  responses:
+    '200':
+      description: Dependency repositories updated
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      updated:
+                        type: boolean 

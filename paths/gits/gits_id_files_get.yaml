@@ -1,0 +1,29 @@
+get:
+  operationId: getGitFileContent
+  tags:
+    - Git
+  summary: Get Git file content
+  description: Get content of a file in the Git repository
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+    - name: path
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Path to the file
+  responses:
+    '200':
+      description: File content
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      content:
+                        type: string 

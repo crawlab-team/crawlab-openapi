@@ -1,0 +1,53 @@
+get:
+  operationId: getNotificationAlert
+  tags:
+    - Notifications
+  summary: Get notification alert by ID
+  description: Get a specific notification alert by ID
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Notification alert details
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml'
+
+put:
+  operationId: updateNotificationAlert
+  tags:
+    - Notifications
+  summary: Update notification alert
+  description: Update a notification alert
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      description: Notification alert updated
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml'
+
+delete:
+  operationId: deleteNotificationAlert
+  tags:
+    - Notifications
+  summary: Delete notification alert
+  description: Delete a notification alert
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Notification alert deleted
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

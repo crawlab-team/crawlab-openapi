@@ -1,0 +1,28 @@
+get:
+  operationId: downloadDatabaseExport
+  tags:
+    - Database
+  summary: Download export
+  description: Download an exported database file
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+    - name: type
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Export file type
+    - name: exportId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Export ID
+  responses:
+    '200':
+      description: File download
+      content:
+        application/octet-stream:
+          schema:
+            type: string
+            format: binary

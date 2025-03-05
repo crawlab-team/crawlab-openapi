@@ -1,0 +1,36 @@
+get:
+  operationId: getNotificationChannels
+  tags:
+    - Notifications
+  summary: Get notification channels
+  description: Get a list of notification channels
+  parameters:
+    - $ref: '../../components/parameters/PageParam.yaml'
+    - $ref: '../../components/parameters/SizeParam.yaml'
+  responses:
+    '200':
+      description: List of notification channels
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/SuccessWithList.yaml'
+
+post:
+  operationId: createNotificationChannel
+  tags:
+    - Notifications
+  summary: Create notification channel
+  description: Create a new notification channel
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      description: Notification channel created
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

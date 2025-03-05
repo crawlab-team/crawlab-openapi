@@ -1,0 +1,28 @@
+post:
+  operationId: installSpiderDependency
+  tags:
+    - Dependencies
+  summary: Install spider dependency
+  description: Install a dependency for a specific spider
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Dependency name
+            version:
+              type: string
+              description: Dependency version
+  responses:
+    '200':
+      description: Spider dependency installed
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

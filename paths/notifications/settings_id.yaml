@@ -1,0 +1,53 @@
+get:
+  operationId: getNotificationSetting
+  tags:
+    - Notifications
+  summary: Get notification setting by ID
+  description: Get a specific notification setting by ID
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Notification setting details
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml'
+
+put:
+  operationId: updateNotificationSetting
+  tags:
+    - Notifications
+  summary: Update notification setting
+  description: Update a notification setting
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      description: Notification setting updated
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml'
+
+delete:
+  operationId: deleteNotificationSetting
+  tags:
+    - Notifications
+  summary: Delete notification setting
+  description: Delete a notification setting
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Notification setting deleted
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

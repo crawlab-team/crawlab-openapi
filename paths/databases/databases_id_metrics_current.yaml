@@ -1,0 +1,15 @@
+get:
+  operationId: getDatabaseCurrentMetrics
+  tags:
+    - Database
+  summary: Get current metrics
+  description: Get current performance metrics for a database
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Current metrics
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

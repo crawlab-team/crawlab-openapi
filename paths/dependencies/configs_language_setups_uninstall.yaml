@@ -1,0 +1,34 @@
+post:
+  operationId: uninstallDependencySetupForLanguage
+  tags:
+    - Dependencies
+  summary: Uninstall dependency setup for a language
+  description: Uninstall a dependency setup for a specific language
+  parameters:
+    - name: language
+      in: path
+      required: true
+      description: Programming language (python, node, etc.)
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      description: Dependency setup uninstalled
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      uninstalled:
+                        type: boolean 

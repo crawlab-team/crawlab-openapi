@@ -1,0 +1,17 @@
+get:
+  operationId: getNotificationSettingRequests
+  tags:
+    - Notifications
+  summary: Get notification requests for a setting
+  description: Get notification requests associated with a specific notification setting
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+    - $ref: '../../components/parameters/PageParam.yaml'
+    - $ref: '../../components/parameters/SizeParam.yaml'
+  responses:
+    '200':
+      description: List of notification requests
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/SuccessWithList.yaml' 

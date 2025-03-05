@@ -1,0 +1,43 @@
+post:
+  operationId: modifyDatabaseTable
+  tags:
+    - Database
+  summary: Modify a table
+  description: Modify an existing table in the database
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Table name
+            columns:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Column name
+                  new_name:
+                    type: string
+                    description: New column name (for rename operations)
+                  type:
+                    type: string
+                    description: Column data type
+                  action:
+                    type: string
+                    enum: [add, modify, drop]
+                    description: Action to perform on the column
+  responses:
+    '200':
+      description: Table modified successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

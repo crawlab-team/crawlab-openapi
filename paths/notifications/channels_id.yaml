@@ -1,0 +1,53 @@
+get:
+  operationId: getNotificationChannel
+  tags:
+    - Notifications
+  summary: Get notification channel by ID
+  description: Get a specific notification channel by ID
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Notification channel details
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml'
+
+put:
+  operationId: updateNotificationChannel
+  tags:
+    - Notifications
+  summary: Update notification channel
+  description: Update a notification channel
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      description: Notification channel updated
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml'
+
+delete:
+  operationId: deleteNotificationChannel
+  tags:
+    - Notifications
+  summary: Delete notification channel
+  description: Delete a notification channel
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Notification channel deleted
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

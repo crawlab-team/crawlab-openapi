@@ -1,0 +1,36 @@
+get:
+  operationId: getNotificationAlerts
+  tags:
+    - Notifications
+  summary: Get notification alerts
+  description: Get a list of notification alerts
+  parameters:
+    - $ref: '../../components/parameters/PageParam.yaml'
+    - $ref: '../../components/parameters/SizeParam.yaml'
+  responses:
+    '200':
+      description: List of notification alerts
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/SuccessWithList.yaml'
+
+post:
+  operationId: createNotificationAlert
+  tags:
+    - Notifications
+  summary: Create notification alert
+  description: Create a new notification alert
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      description: Notification alert created
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

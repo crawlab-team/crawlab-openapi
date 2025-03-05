@@ -1,0 +1,32 @@
+get:
+  operationId: searchDependencyRepos
+  tags:
+    - Dependencies
+  summary: Search dependency repositories
+  description: Search for dependency repositories
+  parameters:
+    - $ref: '../../components/parameters/PageParam.yaml'
+    - $ref: '../../components/parameters/SizeParam.yaml'
+    - name: q
+      in: query
+      required: false
+      description: Search query
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Search results for dependency repositories
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithList.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      list:
+                        type: array
+                        items:
+                          $ref: '../../components/schemas/models/DependencyRepo.yaml' 

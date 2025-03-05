@@ -1,0 +1,30 @@
+get:
+  operationId: getDependencyConfigVersionsForLanguage
+  tags:
+    - Dependencies
+  summary: Get dependency config versions for a language
+  description: Get available versions of dependency configurations for a specific language
+  parameters:
+    - name: language
+      in: path
+      required: true
+      description: Programming language (python, node, etc.)
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Dependency configuration versions
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      versions:
+                        type: array
+                        items:
+                          type: string 

@@ -1,0 +1,48 @@
+get:
+  operationId: getDependencySettings
+  tags:
+    - Dependencies
+  summary: Get dependency settings
+  description: Get dependency settings
+  responses:
+    '200':
+      description: Dependency settings
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithList.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      list:
+                        type: array
+                        items:
+                          $ref: '../../components/schemas/models/DependencyConfig.yaml'
+
+post:
+  operationId: createDependencySetting
+  tags:
+    - Dependencies
+  summary: Create dependency setting
+  description: Create a new dependency setting
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      description: Dependency setting created
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    $ref: '../../components/schemas/models/DependencyConfig.yaml' 

@@ -1,0 +1,29 @@
+post:
+  operationId: saveGitFile
+  tags:
+    - Git
+  summary: Save Git file
+  description: Save content to a file in the Git repository
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - path
+            - content
+          properties:
+            path:
+              type: string
+            content:
+              type: string
+  responses:
+    '200':
+      description: File saved successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

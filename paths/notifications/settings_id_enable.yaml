@@ -1,0 +1,15 @@
+post:
+  operationId: enableNotificationSetting
+  tags:
+    - Notifications
+  summary: Enable notification setting
+  description: Enable a notification setting
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Notification setting enabled
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

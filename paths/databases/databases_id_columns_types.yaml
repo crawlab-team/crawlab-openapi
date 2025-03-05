@@ -1,0 +1,15 @@
+get:
+  operationId: getColumnTypes
+  tags:
+    - Database
+  summary: Get column types
+  description: Get available column data types for a database
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Available column types
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

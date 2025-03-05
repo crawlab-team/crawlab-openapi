@@ -1,0 +1,37 @@
+get:
+  operationId: getGitFilesList
+  tags:
+    - Git
+  summary: List Git files
+  description: List files in the Git repository
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+    - name: path
+      in: query
+      schema:
+        type: string
+      description: Path in the repository
+  responses:
+    '200':
+      description: List of files
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithList.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      list:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            path:
+                              type: string
+                            type:
+                              type: string 

@@ -1,0 +1,65 @@
+get:
+  operationId: getDependencyConfigsForLanguage
+  tags:
+    - Dependencies
+  summary: Get dependency configs for a language
+  description: Get dependency configurations for a specific language
+  parameters:
+    - name: language
+      in: path
+      required: true
+      description: Programming language (python, node, etc.)
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Dependency configurations
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      configs:
+                        type: array
+                        items:
+                          $ref: '../../components/schemas/models/DependencyConfig.yaml'
+
+put:
+  operationId: updateDependencyConfigsForLanguage
+  tags:
+    - Dependencies
+  summary: Update dependency configs for a language
+  description: Update dependency configurations for a specific language
+  parameters:
+    - name: language
+      in: path
+      required: true
+      description: Programming language (python, node, etc.)
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      description: Dependency configurations updated
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      updated:
+                        type: boolean 

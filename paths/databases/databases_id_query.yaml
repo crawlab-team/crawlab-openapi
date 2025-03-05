@@ -1,0 +1,25 @@
+post:
+  operationId: executeDatabaseQuery
+  tags:
+    - Database
+  summary: Execute a database query
+  description: Execute a custom SQL query on the database
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            query:
+              type: string
+              description: SQL query to execute
+  responses:
+    '200':
+      description: Query results
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

@@ -1,0 +1,43 @@
+get:
+  operationId: getSystemSettings
+  tags:
+    - System
+  summary: Get system settings
+  responses:
+    '200':
+      description: System settings
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    additionalProperties: true
+post:
+  operationId: updateSystemSettings
+  tags:
+    - System
+  summary: Update system settings
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          additionalProperties: true
+  responses:
+    '200':
+      description: Settings updated successfully
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    additionalProperties: true 

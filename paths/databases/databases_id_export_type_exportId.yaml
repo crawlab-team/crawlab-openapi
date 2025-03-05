@@ -1,0 +1,27 @@
+get:
+  operationId: getDatabaseExportStatus
+  tags:
+    - Database
+  summary: Get export status
+  description: Get status of a database export
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+    - name: type
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Export file type
+    - name: exportId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Export ID
+  responses:
+    '200':
+      description: Export status
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

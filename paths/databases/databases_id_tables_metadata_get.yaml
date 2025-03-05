@@ -1,0 +1,41 @@
+post:
+  operationId: getSpecificTablesMetadata
+  tags:
+    - Database
+  summary: Get specific table metadata
+  description: Get metadata for specific tables in a database
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            tables:
+              type: array
+              items:
+                type: string
+              description: List of table names
+  responses:
+    '200':
+      description: Table metadata
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      additionalProperties: true
+    '404':
+      description: Database not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml' 

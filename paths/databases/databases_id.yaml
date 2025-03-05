@@ -1,0 +1,59 @@
+get:
+  operationId: getDatabase
+  tags:
+    - Database
+  summary: Get database by ID
+  description: Get database configuration details by ID
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Database details
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    $ref: '../../components/schemas/models/Database.yaml'
+    '404':
+      description: Database not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml'
+
+put:
+  operationId: updateDatabase
+  tags:
+    - Database
+  summary: Update database by ID
+  description: Update database configuration by ID
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/models/Database.yaml'
+  responses:
+    '200':
+      description: Database updated successfully
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    $ref: '../../components/schemas/models/Database.yaml'
+    '404':
+      description: Database not found
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Error.yaml'

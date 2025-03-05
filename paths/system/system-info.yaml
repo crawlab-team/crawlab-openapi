@@ -1,0 +1,26 @@
+get:
+  operationId: getSystemInfo
+  tags:
+    - System
+  summary: Get system information
+  responses:
+    '200':
+      description: System information
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      version:
+                        type: string
+                      mongo:
+                        type: string
+                      redis:
+                        type: string
+                      node:
+                        type: object 

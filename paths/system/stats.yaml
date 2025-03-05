@@ -1,0 +1,30 @@
+get:
+  operationId: getSystemStats
+  tags:
+    - System
+  summary: Get system statistics
+  responses:
+    '200':
+      description: System statistics
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      nodes:
+                        type: integer
+                      projects:
+                        type: integer
+                      spiders:
+                        type: integer
+                      tasks:
+                        type: integer
+                      schedules:
+                        type: integer
+                      users:
+                        type: integer 

@@ -1,0 +1,15 @@
+post:
+  operationId: disableNotificationSetting
+  tags:
+    - Notifications
+  summary: Disable notification setting
+  description: Disable a notification setting
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Notification setting disabled
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

@@ -1,0 +1,27 @@
+get:
+  operationId: downloadExport
+  tags:
+    - Export
+  summary: Download export file
+  description: Download the exported file
+  parameters:
+    - name: type
+      in: path
+      required: true
+      description: Export type (csv, json, etc.)
+      schema:
+        type: string
+    - name: exportId
+      in: path
+      required: true
+      description: Export ID
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Export file
+      content:
+        application/octet-stream:
+          schema:
+            type: string
+            format: binary 

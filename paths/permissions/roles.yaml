@@ -1,0 +1,51 @@
+get:
+  operationId: getRoles
+  tags:
+    - Permissions
+  summary: Get roles list
+  description: Get list of all roles
+  parameters:
+    - $ref: '../../components/parameters/PageParam.yaml'
+    - $ref: '../../components/parameters/SizeParam.yaml'
+    - $ref: '../../components/parameters/AllParam.yaml'
+  responses:
+    '200':
+      description: List of roles
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithList.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      list:
+                        type: array
+                        items:
+                          $ref: '../../components/schemas/models/Role.yaml'
+post:
+  operationId: createRole
+  tags:
+    - Permissions
+  summary: Create role
+  description: Create a new role
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/models/Role.yaml'
+  responses:
+    '200':
+      description: Role created successfully
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithData.yaml'
+              - type: object
+                properties:
+                  data:
+                    $ref: '../../components/schemas/models/Role.yaml' 

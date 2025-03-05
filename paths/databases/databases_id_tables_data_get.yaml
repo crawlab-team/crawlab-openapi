@@ -1,0 +1,35 @@
+post:
+  operationId: getFilteredTableData
+  tags:
+    - Database
+  summary: Get filtered table data
+  description: Get data from a database table with filtering
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+    - $ref: '../../components/parameters/PageParam.yaml'
+    - $ref: '../../components/parameters/SizeParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            table:
+              type: string
+              description: Table name
+            where:
+              type: object
+              additionalProperties: true
+              description: Where conditions
+            sort:
+              type: object
+              additionalProperties: true
+              description: Sort options
+  responses:
+    '200':
+      description: Filtered table data
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/SuccessWithList.yaml' 

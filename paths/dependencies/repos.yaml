@@ -1,0 +1,26 @@
+get:
+  operationId: getDependencyRepoList
+  tags:
+    - Dependencies
+  summary: Get dependency repository list
+  description: Get a list of dependency repositories
+  parameters:
+    - $ref: '../../components/parameters/PageParam.yaml'
+    - $ref: '../../components/parameters/SizeParam.yaml'
+  responses:
+    '200':
+      description: List of dependency repositories
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../../components/schemas/entities/SuccessWithList.yaml'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      list:
+                        type: array
+                        items:
+                          $ref: '../../components/schemas/models/DependencyRepo.yaml' 

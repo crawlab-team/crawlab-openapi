@@ -1,0 +1,63 @@
+get:
+  operationId: getTableData
+  tags:
+    - Database
+  summary: Get table data
+  description: Get data from a database table
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+    - $ref: '../../components/parameters/PageParam.yaml'
+    - $ref: '../../components/parameters/SizeParam.yaml'
+    - name: table
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Table name
+  responses:
+    '200':
+      description: Table data
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/SuccessWithList.yaml'
+
+post:
+  operationId: modifyTableData
+  tags:
+    - Database
+  summary: Modify table data
+  description: Insert, update, or delete data in a database table
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            table:
+              type: string
+              description: Table name
+            action:
+              type: string
+              enum: [insert, update, delete]
+              description: Action to perform
+            data:
+              type: array
+              items:
+                type: object
+                additionalProperties: true
+              description: Data to insert or update
+            where:
+              type: object
+              additionalProperties: true
+              description: Where condition for update or delete
+  responses:
+    '200':
+      description: Data modified successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

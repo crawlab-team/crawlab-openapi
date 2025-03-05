@@ -1,0 +1,15 @@
+post:
+  operationId: testNotificationSetting
+  tags:
+    - Notifications
+  summary: Test notification setting
+  description: Test a notification setting by sending a test notification
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  responses:
+    '200':
+      description: Test notification sent
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

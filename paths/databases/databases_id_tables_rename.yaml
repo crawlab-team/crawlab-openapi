@@ -1,0 +1,28 @@
+post:
+  operationId: renameDatabaseTable
+  tags:
+    - Database
+  summary: Rename a table
+  description: Rename an existing table in the database
+  parameters:
+    - $ref: '../../components/parameters/IdParam.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Current table name
+            new_name:
+              type: string
+              description: New table name
+  responses:
+    '200':
+      description: Table renamed successfully
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

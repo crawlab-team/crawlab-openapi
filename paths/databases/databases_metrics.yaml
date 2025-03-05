@@ -1,0 +1,13 @@
+get:
+  operationId: getDatabaseMetrics
+  tags:
+    - Database
+  summary: Get database metrics
+  description: Get performance metrics for all databases
+  responses:
+    '200':
+      description: Database metrics
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/entities/Success.yaml' 

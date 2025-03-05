@@ -4,10 +4,8 @@ properties:
     $ref: '../types/ObjectId.yaml'
   last_task_id:
     $ref: '../types/ObjectId.yaml'
-    description: ID of the last task run for this spider
   last_task:
     $ref: '../models/Task.yaml'
-    description: Details of the last task
   tasks:
     type: integer
     description: Total number of tasks for this spider

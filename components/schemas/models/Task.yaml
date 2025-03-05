@@ -47,7 +47,14 @@ allOf:
       stat:
         $ref: '../models/TaskStat.yaml'
       spider:
-        $ref: '../models/Spider.yaml'
+        type: object
+        properties:
+          _id:
+            $ref: '../types/ObjectId.yaml'
+          name:
+            type: string
+          description:
+            type: string
       schedule:
         $ref: '../models/Schedule.yaml'
       node:

@@ -10,13 +10,19 @@ post:
       application/json:
         schema:
           type: object
+          required:
+            - mode
           properties:
-            priority:
-              type: integer
-              format: int32
-            param:
-              type: object
-              additionalProperties: true
+            mode:
+              type: string
+              default: random
+              enum: [ random, all, selected-nodes ]
+              description: Run mode
+            node_ids:
+              type: array
+              items:
+                $ref: '../../components/schemas/types/ObjectId.yaml'
+              description: Node IDs to run the spider when mode is 'selected-nodes'
   responses:
     '200':
       description: Spider started successfully
